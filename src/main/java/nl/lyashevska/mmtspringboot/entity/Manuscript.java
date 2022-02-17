@@ -1,13 +1,32 @@
 package nl.lyashevska.mmtspringboot.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="MAN_SYSTEM")
 public class Manuscript {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String author;
     private String year;
     private String journal;
     private int volume;
+
+    public Manuscript(){
+        super();
+    }
+
+    public Manuscript(int id, String title, String author, String year, String journal, int volume) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.journal = journal;
+        this.volume = volume;
+    }
 
     public int getId() {
         return id;
