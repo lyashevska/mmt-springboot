@@ -9,4 +9,8 @@ public class ManController {
     public String home(){
         return "index";
     }
+    @GetMapping("/addman")
+    public String addManForm(){
+        return "add_man";
+    }
 }
