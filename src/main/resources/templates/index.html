@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,6 +38,13 @@
     </div>
 </nav>
 <!--Navbar-->
+
+<div th:if=${session.msg}>
+    <div class="alert alert-success" role="alert" th:text="${session.msg}">
+    </div>
+</div>
+
+<th:block th:text="${#session.removeAttribute('msg')}"> </th:block>
 
 <div class="container p-5">
     <table class="table table-striped">
