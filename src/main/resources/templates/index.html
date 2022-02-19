@@ -42,9 +42,9 @@
 <div th:if=${session.msg}>
     <div class="alert alert-success" role="alert" th:text="${session.msg}">
     </div>
+    <th:block th:text="${#session.removeAttribute('msg')}"> </th:block>
 </div>
 
-<th:block th:text="${#session.removeAttribute('msg')}"> </th:block>
 
 <div class="container p-5">
     <table class="table table-striped">
@@ -56,32 +56,24 @@
             <th scope="col">Year</th>
             <th scope="col">Journal</th>
             <th scope="col">Volume</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+        <tr th:each="m: ${man}">
+            <th th:text="${m.id}">1</th>
+            <td th:text="${m.title}"></td>
+            <td th:text="${m.author}"></td>
+            <td th:text="${m.year}"></td>
+            <td th:text="${m.journal}"></td>
+            <td th:text="${m.volume}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${m.id})}">Edit</a>
+
+                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>
+            </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@fat</td>
-            <td>@fat</td>
-        </tr>
+
         </tbody>
     </table>
 </div>
