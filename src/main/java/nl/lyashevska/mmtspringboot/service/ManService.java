@@ -21,6 +21,7 @@ public class ManService {
     public List<Manuscript> getAllMan(){
         return repo.findAll();
     }
+
     public Manuscript getManById(int id){
         Optional<Manuscript> m = repo.findById(id);
         if(m.isPresent()){
