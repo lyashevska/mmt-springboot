@@ -31,20 +31,27 @@ public class ManController {
         return "add_man";
     }
 
-    @PostMapping("/register")
-    public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
-        System.out.println(m);
-        service.addMan(m);
-        session.setAttribute("msg", "Manuscript added sucessfully");
-        return "redirect:/";
-    }
-
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model mod) {
         Manuscript m = service.getManById(id);
         mod.addAttribute("man", m);
-
         return "edit";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMan(@PathVariable int id, HttpSession session) {
+        service.deleteMan(id);
+        session.setAttribute("msg", "Record deleted successfully");
+        return "redirect:/";
+    }
+
+    // post is used to add new resources
+    @PostMapping("/register")
+    public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
+        System.out.println(m);
+        service.addMan(m);
+        session.setAttribute("msg", "Manuscript added successfully");
+        return "redirect:/";
     }
 
     @PostMapping("/update")
@@ -52,15 +59,6 @@ public class ManController {
         service.addMan(m);
         session.setAttribute("msg", "Manuscript updated successfully");
         return "redirect:/";
-
     }
-
-    @GetMapping("/delete/{id}")
-    public String deleteMan(@PathVariable int id, HttpSession session) {
-        service.deleteMan(id);
-        session.setAttribute("msg", "Manuscript deleted successfully");
-        return "redirect:/";
-    }
-
 
 }
