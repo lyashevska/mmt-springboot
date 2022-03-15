@@ -19,6 +19,15 @@ public class ManController {
     @Autowired
     private ManService service;
 
+    @GetMapping("/login")
+    public String login(){return "login";
+    }
+
+//    @GetMapping("/")
+//    public String home(){
+//        return "index";
+//    }
+
     @GetMapping("/")
     public String home(Model m) {
         List<Manuscript> man = service.getAllMan();
