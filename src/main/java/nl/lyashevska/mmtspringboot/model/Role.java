@@ -1,10 +1,6 @@
-package com.example.springbootregistrationlogin.model;
+package nl.lyashevska.mmtspringboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "role")

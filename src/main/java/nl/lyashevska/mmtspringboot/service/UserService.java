@@ -1,7 +1,7 @@
-package com.example.springbootregistrationlogin.service;
+package nl.lyashevska.mmtspringboot.service;
 
-import com.example.springbootregistrationlogin.model.User;
-import com.example.springbootregistrationlogin.web.dto.UserRegistrationDto;
+import nl.lyashevska.mmtspringboot.controller.UserRegistrationDto;
+import nl.lyashevska.mmtspringboot.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 // method to save user data

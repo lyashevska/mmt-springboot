@@ -1,6 +1,6 @@
 package nl.lyashevska.mmtspringboot.controller;
 
-import nl.lyashevska.mmtspringboot.entity.Manuscript;
+import nl.lyashevska.mmtspringboot.model.Manuscript;
 import nl.lyashevska.mmtspringboot.service.ManService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,13 @@ public class ManController {
     @Autowired
     private ManService service;
 
+    @GetMapping("/")
+    public String home(Model m) {
+        List<Manuscript> man = service.getAllMan();
+        m.addAttribute("man", man);
+        return "index";
+    }
+
     @GetMapping("/login")
     public String login(){return "login";
     }
@@ -28,12 +35,6 @@ public class ManController {
 //        return "index";
 //    }
 
-    @GetMapping("/")
-    public String home(Model m) {
-        List<Manuscript> man = service.getAllMan();
-        m.addAttribute("man", man);
-        return "index";
-    }
 
     @GetMapping("/addman")
     public String addManForm() {

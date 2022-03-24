@@ -1,9 +1,9 @@
-package nl.lyashevska.mmtspringboot.entity;
+package nl.lyashevska.mmtspringboot.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="MAN_SYSTEM")
+@Table(name="manuscript")
 public class Manuscript {
 
     @Id
@@ -19,6 +19,7 @@ public class Manuscript {
         super();
     }
 
+    // constructor
     public Manuscript(int id, String title, String author, String year, String journal, int volume) {
         this.id = id;
         this.title = title;

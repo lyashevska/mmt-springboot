@@ -1,6 +1,6 @@
 package nl.lyashevska.mmtspringboot.service;
 
-import nl.lyashevska.mmtspringboot.entity.Manuscript;
+import nl.lyashevska.mmtspringboot.model.Manuscript;
 import nl.lyashevska.mmtspringboot.repository.ManRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,7 @@ public class ManService {
         }
         return null;
     }
+
     public void deleteMan(int id){
         repo.deleteById(id);
     }

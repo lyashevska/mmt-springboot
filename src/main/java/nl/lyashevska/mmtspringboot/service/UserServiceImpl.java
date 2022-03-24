@@ -1,10 +1,9 @@
-package com.example.springbootregistrationlogin.service;
+package nl.lyashevska.mmtspringboot.service;
 
-import com.example.springbootregistrationlogin.model.Role;
-import com.example.springbootregistrationlogin.model.User;
-import com.example.springbootregistrationlogin.repository.UserRepository;
-import com.example.springbootregistrationlogin.web.dto.UserRegistrationDto;
-
+import nl.lyashevska.mmtspringboot.controller.UserRegistrationDto;
+import nl.lyashevska.mmtspringboot.model.Role;
+import nl.lyashevska.mmtspringboot.model.User;
+import nl.lyashevska.mmtspringboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
