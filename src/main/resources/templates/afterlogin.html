@@ -27,12 +27,12 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                    <a class="nav-link active" aria-current="page" href="/">Logout</a>
                 </li>
 
-<!--                <li class="nav-item active">-->
-<!--                    <a class="nav-link" href="addman">Add Manuscript</a>-->
-<!--                </li>-->
+                <li class="nav-item active">
+                    <a class="nav-link" href="addman">Add Manuscript</a>
+                </li>
 
             </ul>
 
@@ -69,10 +69,11 @@
             <td th:text="${m.year}"></td>
             <td th:text="${m.journal}"></td>
             <td th:text="${m.volume}"></td>
-<!--            <td>-->
-<!--                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${m.id})}">Edit</a>-->
-<!--                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>-->
-<!--            </td>-->
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${m.id})}">Edit</a>
+                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>
+<!--                upload -->
+            </td>
         </tr>
 
         </tbody>

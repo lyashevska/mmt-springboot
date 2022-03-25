@@ -32,9 +32,10 @@ public class ManController {
         m.addAttribute("man", man);
         return "afterlogin";
     }
-
+// try LoginController
     @GetMapping("/login")
-    public String login(){return "login";
+    public String login(){
+        return "login";
     }
 
     @GetMapping("/addman")
@@ -53,7 +54,7 @@ public class ManController {
     public String deleteMan(@PathVariable int id, HttpSession session) {
         service.deleteMan(id);
         session.setAttribute("msg", "Record deleted successfully");
-        return "redirect:/";
+        return "redirect:/afterlogin";
     }
 
     // post is used to add new resources
@@ -62,14 +63,14 @@ public class ManController {
         System.out.println(m);
         service.addMan(m);
         session.setAttribute("msg", "Manuscript added successfully");
-        return "redirect:/";
+        return "redirect:/afterlogin";
     }
 
     @PostMapping("/update")
     public String updateMan(@ModelAttribute Manuscript m, HttpSession session) {
         service.addMan(m);
         session.setAttribute("msg", "Manuscript updated successfully");
-        return "redirect:/";
+        return "redirect:/afterlogin";
     }
 
 }
