@@ -26,15 +26,16 @@ public class ManController {
         return "index";
     }
 
+    @GetMapping("/afterlogin")
+    public String afterlogin(Model m) {
+        List<Manuscript> man = service.getAllMan();
+        m.addAttribute("man", man);
+        return "afterlogin";
+    }
+
     @GetMapping("/login")
     public String login(){return "login";
     }
-
-//    @GetMapping("/")
-//    public String home(){
-//        return "index";
-//    }
-
 
     @GetMapping("/addman")
     public String addManForm() {
