@@ -1,6 +1,5 @@
 package nl.lyashevska.mmtspringboot.config;
 
-
 import nl.lyashevska.mmtspringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

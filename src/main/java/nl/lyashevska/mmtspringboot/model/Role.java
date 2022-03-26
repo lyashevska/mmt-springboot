@@ -11,6 +11,7 @@ public class Role {
     private Long id;
     private String name;
 
+    // default constractor as required by hibernate for JPA entity
     public Role() {
     }
 

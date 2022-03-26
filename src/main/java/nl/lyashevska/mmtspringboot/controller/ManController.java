@@ -25,14 +25,14 @@ public class ManController {
         m.addAttribute("man", man);
         return "index";
     }
-
+// home
     @GetMapping("/afterlogin")
     public String afterlogin(Model m) {
         List<Manuscript> man = service.getAllMan();
         m.addAttribute("man", man);
         return "afterlogin";
     }
-// try LoginController
+
     @GetMapping("/login")
     public String login(){
         return "login";
