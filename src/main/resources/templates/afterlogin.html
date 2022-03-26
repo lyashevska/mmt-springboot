@@ -27,11 +27,11 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Logout</a>
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Add manuscript</a>
+                    <a class="nav-link" href="addman">Add Manuscript</a>
                 </li>
 
             </ul>
@@ -41,43 +41,43 @@
 </nav>
 <!--Navbar-->
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="text-center text-primary">Add</h4>
-                    <form th:action="@{/register}" method="post">
-
-                        <div class="form-group">
-                            <label>Enter manuscript title</label><input type="text" class="form-control" name="title">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter author</label><input type="text" class="form-control" name="author">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter year</label><input type="text" class="form-control" name="year">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter journal</label><input type="text" class="form-control" name="journal">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter volume</label><input type="text" class="form-control" name="volume">
-                        </div>
-
-                        <button class="btn btn-primary btn-block">Submit</button>
-
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
+<div th:if=${session.msg}>
+    <div class="alert alert-success" role="alert" th:text="${session.msg}">
     </div>
+    <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+</div>
+
+
+<div class="container p-5">
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Year</th>
+            <th scope="col">Journal</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m: ${man}">
+            <th th:text="${m.id}">1</th>
+            <td th:text="${m.title}"></td>
+            <td th:text="${m.author}"></td>
+            <td th:text="${m.year}"></td>
+            <td th:text="${m.journal}"></td>
+            <td th:text="${m.volume}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${m.id})}">Edit</a>
+                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>
+<!--                upload -->
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->

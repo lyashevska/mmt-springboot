@@ -1,6 +1,6 @@
 package nl.lyashevska.mmtspringboot.controller;
 
-import nl.lyashevska.mmtspringboot.entity.Manuscript;
+import nl.lyashevska.mmtspringboot.model.Manuscript;
 import nl.lyashevska.mmtspringboot.service.ManService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,42 +25,52 @@ public class ManController {
         m.addAttribute("man", man);
         return "index";
     }
+// home
+    @GetMapping("/afterlogin")
+    public String afterlogin(Model m) {
+        List<Manuscript> man = service.getAllMan();
+        m.addAttribute("man", man);
+        return "afterlogin";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     @GetMapping("/addman")
     public String addManForm() {
         return "add_man";
     }
 
-    @PostMapping("/register")
-    public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
-        System.out.println(m);
-        service.addMan(m);
-        session.setAttribute("msg", "Manuscript added sucessfully");
-        return "redirect:/";
-    }
-
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model mod) {
         Manuscript m = service.getManById(id);
         mod.addAttribute("man", m);
-
         return "edit";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMan(@PathVariable int id, HttpSession session) {
+        service.deleteMan(id);
+        session.setAttribute("msg", "Record deleted successfully");
+        return "redirect:/afterlogin";
+    }
+
+    // post is used to add new resources
+    @PostMapping("/register")
+    public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
+        System.out.println(m);
+        service.addMan(m);
+        session.setAttribute("msg", "Manuscript added successfully");
+        return "redirect:/afterlogin";
     }
 
     @PostMapping("/update")
     public String updateMan(@ModelAttribute Manuscript m, HttpSession session) {
         service.addMan(m);
         session.setAttribute("msg", "Manuscript updated successfully");
-        return "redirect:/";
-
+        return "redirect:/afterlogin";
     }
-
-    @GetMapping("/delete/{id}")
-    public String deleteMan(@PathVariable int id, HttpSession session) {
-        service.deleteMan(id);
-        session.setAttribute("msg", "Manuscript deleted successfully");
-        return "redirect:/";
-    }
-
 
 }
