@@ -1,18 +1,32 @@
 package nl.lyashevska.mmtspringboot.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.TermVector;
+import org.springframework.stereotype.Indexed;
+
 import javax.persistence.*;
 
 @Entity
+@Indexed
 @Table(name="manuscript")
 public class Manuscript {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    // identify attributes as searchable by Field annotation
+    @Field(termVector = TermVector.YES)
     private String title;
+
+    @Field(termVector = TermVector.YES)
     private String author;
+
     private String year;
+
+    @Field(termVector = TermVector.YES)
     private String journal;
+
     private int volume;
 
     public Manuscript(){
