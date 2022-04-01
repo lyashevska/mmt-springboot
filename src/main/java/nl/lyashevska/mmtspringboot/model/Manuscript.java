@@ -15,6 +15,11 @@ public class Manuscript {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // bidirectional
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     // identify attributes as searchable by Field annotation
     @Field(termVector = TermVector.YES)
     private String title;
@@ -29,13 +34,14 @@ public class Manuscript {
 
     private int volume;
 
+    // constructor
     public Manuscript(){
         super();
     }
 
-    // constructor
-    public Manuscript(int id, String title, String author, String year, String journal, int volume) {
+    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume) {
         this.id = id;
+        this.user = user;
         this.title = title;
         this.author = author;
         this.year = year;
@@ -49,6 +55,14 @@ public class Manuscript {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -95,6 +109,7 @@ public class Manuscript {
     public String toString() {
         return "Manuscript{" +
                 "id=" + id +
+                ", user=" + user +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", year='" + year + '\'' +
