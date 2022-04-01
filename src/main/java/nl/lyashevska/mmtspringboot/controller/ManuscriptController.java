@@ -1,7 +1,7 @@
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
-import nl.lyashevska.mmtspringboot.service.ManService;
+import nl.lyashevska.mmtspringboot.service.ManuscriptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class ManController {
+public class ManuscriptController {
 
     @Autowired
-    private ManService service;
+    private ManuscriptService service;
 
     @GetMapping("/")
     public String home(Model m) {
@@ -35,12 +35,13 @@ public class ManController {
 
     @GetMapping("/login")
     public String login(){
+//        return "redirect:/afterlogin";
         return "login";
     }
 
-    @GetMapping("/addman")
-    public String addManForm() {
-        return "add_man";
+    @GetMapping("/add")
+    public String addForm() {
+        return "add";
     }
 
     @GetMapping("/edit/{id}")
@@ -61,14 +62,14 @@ public class ManController {
     @PostMapping("/register")
     public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
         System.out.println(m);
-        service.addMan(m);
+        service.add(m);
         session.setAttribute("msg", "Manuscript added successfully");
         return "redirect:/afterlogin";
     }
 
     @PostMapping("/update")
     public String updateMan(@ModelAttribute Manuscript m, HttpSession session) {
-        service.addMan(m);
+        service.add(m);
         session.setAttribute("msg", "Manuscript updated successfully");
         return "redirect:/afterlogin";
     }

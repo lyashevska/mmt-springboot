@@ -1,7 +1,7 @@
 package nl.lyashevska.mmtspringboot.service;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
-import nl.lyashevska.mmtspringboot.repository.ManRepo;
+import nl.lyashevska.mmtspringboot.repository.ManuscriptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ManService {
+public class ManuscriptService {
 
     @Autowired
-    private ManRepo repo;
+    private ManuscriptRepository repo;
 
-    public void addMan(Manuscript m){
+    public void add(Manuscript m){
         repo.save(m);
     }
 
