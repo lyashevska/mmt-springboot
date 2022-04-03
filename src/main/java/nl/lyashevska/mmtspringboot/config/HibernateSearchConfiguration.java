@@ -1,9 +1,11 @@
 /**
  * https://www.baeldung.com/hibernate-search
+ * https://github.com/eugenp/tutorials/blob/master/persistence-modules/spring-hibernate-5/src/main/java/com/baeldung/hibernatesearch/ProductSearchDao.java
  * */
 
 package nl.lyashevska.mmtspringboot.config;
-
+import com.google.common.base.Preconditions;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,6 +23,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @EnableTransactionManagement
 @Configuration
@@ -36,26 +40,26 @@ public class HibernateSearchConfiguration {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-//        em.setDataSource(dataSource());
+        em.setDataSource(dataSource());
         em.setPackagesToScan(new String[] { "nl.lyashevska.mmtspringboot.model" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-//        em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(additionalProperties());
 
         return em;
     }
 
-//    @Bean
-//    public DataSource dataSource() {
-//        final BasicDataSource dataSource = new BasicDataSource();
-//        dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-//        dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
-//        dataSource.setUsername(env.getProperty("jdbc.user"));
-//        dataSource.setPassword(env.getProperty("jdbc.pass"));
-//
-//        return dataSource;
-//    }
+    @Bean
+    public DataSource dataSource() {
+        final BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+        dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setPassword(env.getProperty("jdbc.pass"));
+
+        return dataSource;
+    }
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
@@ -69,11 +73,11 @@ public class HibernateSearchConfiguration {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
-//
-//    Properties additionalProperties() {
-//        Properties properties = new Properties();
-//        properties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(env.getProperty("hibernate.hbm2ddl.auto")));
-//        properties.setProperty("hibernate.dialect", Preconditions.checkNotNull(env.getProperty("hibernate.dialect")));
-//        return properties;
-//    }
+
+    Properties additionalProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(env.getProperty("hibernate.hbm2ddl.auto")));
+        properties.setProperty("hibernate.dialect", Preconditions.checkNotNull(env.getProperty("hibernate.dialect")));
+        return properties;
+    }
 }
