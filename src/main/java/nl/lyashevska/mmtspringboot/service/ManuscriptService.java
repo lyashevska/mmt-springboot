@@ -18,11 +18,11 @@ public class ManuscriptService {
         repo.save(m);
     }
 
-    public List<Manuscript> getAllMan(){
+    public List<Manuscript> getAllManuscript(){
         return repo.findAll();
     }
 
-    public Manuscript getManById(int id){
+    public Manuscript getManuscriptById(int id){
         Optional<Manuscript> m = repo.findById(id);
         if(m.isPresent()){
             return m.get();
@@ -30,7 +30,7 @@ public class ManuscriptService {
         return null;
     }
 
-    public void deleteMan(int id){
+    public void deleteManuscript(int id){
         repo.deleteById(id);
     }
 }

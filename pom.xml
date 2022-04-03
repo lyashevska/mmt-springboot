@@ -69,6 +69,12 @@
 			<version>5.11.10.Final</version>
 		</dependency>
 
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-search-engine &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate</groupId>-->
+<!--			<artifactId>hibernate-search-engine</artifactId>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>

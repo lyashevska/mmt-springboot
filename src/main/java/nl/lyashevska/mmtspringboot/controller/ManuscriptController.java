@@ -21,14 +21,14 @@ public class ManuscriptController {
 
     @GetMapping("/")
     public String home(Model m) {
-        List<Manuscript> man = service.getAllMan();
+        List<Manuscript> man = service.getAllManuscript();
         m.addAttribute("man", man);
         return "index";
     }
 // home
     @GetMapping("/afterlogin")
     public String afterlogin(Model m) {
-        List<Manuscript> man = service.getAllMan();
+        List<Manuscript> man = service.getAllManuscript();
         m.addAttribute("man", man);
         return "afterlogin";
     }
@@ -46,14 +46,14 @@ public class ManuscriptController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model mod) {
-        Manuscript m = service.getManById(id);
+        Manuscript m = service.getManuscriptById(id);
         mod.addAttribute("man", m);
         return "edit";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteMan(@PathVariable int id, HttpSession session) {
-        service.deleteMan(id);
+    public String deleteManuscript(@PathVariable int id, HttpSession session) {
+        service.deleteManuscript(id);
         session.setAttribute("msg", "Record deleted successfully");
         return "redirect:/afterlogin";
     }
