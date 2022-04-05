@@ -1,13 +1,20 @@
+/**
+ * https://reflectoring.io/hibernate-search/
+ */
+
 package nl.lyashevska.mmtspringboot.model;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.TermVector;
-import org.springframework.stereotype.Indexed;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 
+// map a class to a database table and its fields to the table columns
 @Entity
+// map a class to Elasticsearch’s index and its fields to the document fields in the index
 @Indexed
+
 @Table(name="manuscript")
 public class Manuscript {
 
@@ -27,14 +34,16 @@ public class Manuscript {
     @Field(termVector = TermVector.YES)
     private String author;
 
+    @Field(termVector = TermVector.YES)
     private String year;
 
     @Field(termVector = TermVector.YES)
     private String journal;
 
+    @Field(termVector = TermVector.YES)
     private int volume;
 
-    // constructor
+    // no arg constructor
     public Manuscript(){
     }
 
