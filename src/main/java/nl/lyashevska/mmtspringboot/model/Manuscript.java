@@ -36,7 +36,6 @@ public class Manuscript {
 
     // constructor
     public Manuscript(){
-        super();
     }
 
     public Manuscript(int id, User user, String title, String author, String year, String journal, int volume) {
@@ -48,6 +47,25 @@ public class Manuscript {
         this.journal = journal;
         this.volume = volume;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Manuscript))
+            return false;
+
+        Manuscript manuscript = (Manuscript) o;
+
+        if (id != manuscript.id)
+            return false;
+        if (user != manuscript.user)
+            return false;
+        if (!title.equals(manuscript.title))
+            return false;
+        return journal.equals(manuscript.journal);
+    }
+
 
     public int getId() {
         return id;

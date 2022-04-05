@@ -4,6 +4,7 @@
  * */
 
 package nl.lyashevska.mmtspringboot.config;
+
 import com.google.common.base.Preconditions;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class HibernateSearchConfiguration {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+//        em.setDataSource(dataSource());
         em.setPackagesToScan(new String[] { "nl.lyashevska.mmtspringboot.model" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -50,16 +51,14 @@ public class HibernateSearchConfiguration {
         return em;
     }
 
-    @Bean
-    public DataSource dataSource() {
-        final BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-        dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
-        dataSource.setUsername(env.getProperty("jdbc.user"));
-        dataSource.setPassword(env.getProperty("jdbc.pass"));
-
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        final BasicDataSource dataSource = new BasicDataSource();
+//        dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+//        dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
+//        dataSource.setPassword(env.getProperty("jdbc.pass"));
+//        return dataSource;
+//    }
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
@@ -74,7 +73,7 @@ public class HibernateSearchConfiguration {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties additionalProperties() {
+     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(env.getProperty("hibernate.hbm2ddl.auto")));
         properties.setProperty("hibernate.dialect", Preconditions.checkNotNull(env.getProperty("hibernate.dialect")));
