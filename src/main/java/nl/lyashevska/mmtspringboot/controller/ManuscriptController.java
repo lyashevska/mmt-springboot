@@ -1,3 +1,6 @@
+/**
+ * The controller is responsible for connecting the backend services to our front end Thymeleaf template.
+ */
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
@@ -25,6 +28,7 @@ public class ManuscriptController {
         m.addAttribute("man", man);
         return "index";
     }
+
 // home
     @GetMapping("/afterlogin")
     public String afterlogin(Model m) {

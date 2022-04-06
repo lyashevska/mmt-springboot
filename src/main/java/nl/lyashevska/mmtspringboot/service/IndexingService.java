@@ -1,5 +1,5 @@
 /**
- * Before we perform any queries, we first need to load data into Elasticsearch
+ * Before we perform any queries, we first need to load data into Lucene/Elasticsearch
  * https://reflectoring.io/hibernate-search/
  * https://github.com/thombergs/code-examples/blob/master/spring-boot/hibernate-search/src/main/java/io/reflectoring/hibernatesearch/service/SearchService.java
  */
@@ -30,7 +30,6 @@ public class IndexingService {
         fullTextEntityManager.createIndexer().startAndWait();
         log.info("All entities indexed");
     }
-
 
 }
 
