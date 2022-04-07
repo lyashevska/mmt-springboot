@@ -36,7 +36,7 @@ public class SearchService {
         //  wrap everything in FullTextQuery
         FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(authorQuery, Manuscript.class);
 
-        // fetch the result list by calling getResultList()
+
         return (List<Manuscript>) fullTextQuery.getResultList();
     }
 

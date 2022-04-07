@@ -1,17 +1,16 @@
 /**
- * The controller is responsible for connecting the backend services to our front end Thymeleaf template.
+ * The controller is responsible for connecting the backend services to the front end Thymeleaf template.
+ * https://wkrzywiec.medium.com/full-text-search-with-hibernate-search-lucene-part-1-e245b889aa8e
  */
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
 import nl.lyashevska.mmtspringboot.service.ManuscriptService;
+import nl.lyashevska.mmtspringboot.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,27 +18,61 @@ import java.util.List;
 @Controller
 public class ManuscriptController {
 
+    // inject the SearchService object
+    @Autowired
+    private SearchService searchService;
+
     @Autowired
     private ManuscriptService service;
 
+    // home with the search bar
     @GetMapping("/")
-    public String home(Model m) {
-        List<Manuscript> man = service.getAllManuscript();
-        m.addAttribute("man", man);
+    public String home(Model m, @RequestParam(value = "search", required = false) String searchText) {
+        // show all records
+        if (searchText == null) {
+            List<Manuscript> man = service.getAllManuscript();
+            m.addAttribute("man", man);
+            return "index";
+        }
+        // show only records matching search
+        if (searchText != null) {
+            m.addAttribute("man", searchService.getManuscriptAuthor(searchText));
+        }
         return "index";
     }
 
-// home
+//        @GetMapping("/")
+//    public String home(Model m) {
+//        List<Manuscript> man = service.getAllManuscript();
+//        m.addAttribute("man", man);
+//        return "index";
+//    }
+
+    //afterlogin with the search bar
     @GetMapping("/afterlogin")
-    public String afterlogin(Model m) {
-        List<Manuscript> man = service.getAllManuscript();
-        m.addAttribute("man", man);
+    public String afterlogin(Model m, @RequestParam(value = "search", required = false) String searchText) {
+        // show all records
+        if (searchText == null) {
+            List<Manuscript> man = service.getAllManuscript();
+            m.addAttribute("man", man);
+            return "afterlogin";
+        }
+        // show only records matching search
+        if (searchText != null) {
+            m.addAttribute("man", searchService.getManuscriptAuthor(searchText));
+        }
         return "afterlogin";
     }
 
+//    @GetMapping("/afterlogin")
+//    public String afterlogin(Model m) {
+//        List<Manuscript> man = service.getAllManuscript();
+//        m.addAttribute("man", man);
+//        return "afterlogin";
+//    }
+
     @GetMapping("/login")
-    public String login(){
-//        return "redirect:/afterlogin";
+    public String login() {
         return "login";
     }
 

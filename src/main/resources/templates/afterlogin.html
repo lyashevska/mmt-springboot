@@ -59,6 +59,14 @@
 </div>
 
 <div class="container p-5">
+    <form action="#" th:action="@{/}" th:object="${search}">
+
+        <label for="search">Search by Author:</label>
+        <input name="search" id="search"></input>
+    </form>
+</div>
+
+<div class="container p-5">
     <table class="table table-striped">
         <thead class="bg-primary text-white">
         <tr>

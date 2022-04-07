@@ -47,34 +47,15 @@
     <th:block th:text="${#session.removeAttribute('msg')}"> </th:block>
 </div>
 
+<!--https://www.youtube.com/watch?v=Q4e_GydUjbs&t=1234s-->
 <!--<adapt from https://mkyong.com/spring-boot/spring-boot-hibernate-search-example/>-->
+<div class="container p-5">
+    <form action="#" th:action="@{/}" th:object="${search}">
 
-<!--<form action="#" th:action="@{/}" th:object="${search}">-->
-<!--    <label for="search_input">Search:</label> <input name="search"-->
-<!--                                                     id="search">-->
-<!--</input>-->
-<!--    <div th:if="${not #lists.isEmpty(search)}">-->
-<!--        <h2>Search Results</h2>-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>ID</th>-->
-<!--                <th>name</th>-->
-<!--                <th>rarity level</th>-->
-<!--                <th>year</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="search : ${search}">-->
-<!--                <td th:text="${search.id}">Text ...</td>-->
-<!--                <td th:text="${search.name}">Text ...</td>-->
-<!--                <td th:text="${search.rarityLevel}">Text ...</td>-->
-<!--                <td th:text="${search.year}">Text...</td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</form>-->
+        <label for="search">Search by Author:</label>
+        <input name="search" id="search"></input>
+    </form>
+</div>
 
 <div class="container p-5">
     <table class="table table-striped">
@@ -86,10 +67,9 @@
             <th scope="col">Year</th>
             <th scope="col">Journal</th>
             <th scope="col">Volume</th>
-<!--            <th scope="col">Action</th>-->
-
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="m: ${man}">
             <th th:text="${m.id}">1</th>
@@ -98,17 +78,11 @@
             <td th:text="${m.year}"></td>
             <td th:text="${m.journal}"></td>
             <td th:text="${m.volume}"></td>
-<!--            <td>-->
-<!--                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${m.id})}">Edit</a>-->
-<!--                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>-->
-<!--            </td>-->
         </tr>
-
         </tbody>
     </table>
 </div>
 
-<!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

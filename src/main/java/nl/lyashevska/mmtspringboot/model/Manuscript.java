@@ -1,5 +1,6 @@
 /**
  * https://reflectoring.io/hibernate-search/
+ * hibernate search annotations are added to the class
  */
 
 package nl.lyashevska.mmtspringboot.model;

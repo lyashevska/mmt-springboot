@@ -1,3 +1,6 @@
+/**
+ * This method is called when application is started
+ */
 package nl.lyashevska.mmtspringboot.config;
 
 import lombok.RequiredArgsConstructor;
