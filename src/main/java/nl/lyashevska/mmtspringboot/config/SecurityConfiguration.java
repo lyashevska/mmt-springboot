@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    @Override
+//    https://stackoverflow.com/questions/36243352/how-to-set-redirection-after-successful-login
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
                         "/registration**",
@@ -47,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/afterlogin", true)
                 .loginPage("/login")
                 .permitAll()
                 .and()
@@ -57,4 +58,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
+
 }

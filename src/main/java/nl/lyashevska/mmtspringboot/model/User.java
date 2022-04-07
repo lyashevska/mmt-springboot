@@ -1,7 +1,13 @@
 package nl.lyashevska.mmtspringboot.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
+
 
 @Entity
 @Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -22,7 +28,7 @@ public class User {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -32,6 +38,16 @@ public class User {
 
     private Collection<Role> roles;
 
+//  https://www.youtube.com/watch?v=8X1eaC6r2TM
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    private List<Manuscript> manuscripts = new ArrayList<>();
+
+    // constructors
     public User() {
     }
 
