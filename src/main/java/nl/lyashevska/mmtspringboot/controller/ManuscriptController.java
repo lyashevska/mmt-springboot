@@ -22,6 +22,7 @@ public class ManuscriptController {
     @Autowired
     private SearchService searchService;
 
+    // inject ManuscriptService
     @Autowired
     private ManuscriptService service;
 

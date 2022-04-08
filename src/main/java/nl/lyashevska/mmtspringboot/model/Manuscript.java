@@ -44,11 +44,16 @@ public class Manuscript {
     @Field(termVector = TermVector.YES)
     private int volume;
 
+    // file
+    private byte [] content;
+
+    private  long size;
+
     // no arg constructor
     public Manuscript(){
     }
 
-    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume) {
+    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume, byte[] content, long size) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -56,6 +61,8 @@ public class Manuscript {
         this.year = year;
         this.journal = journal;
         this.volume = volume;
+        this.content = content;
+        this.size = size;
     }
 
     @Override
@@ -131,6 +138,22 @@ public class Manuscript {
 
     public void setVolume(int volume) {
         this.volume = volume;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 
     @Override
