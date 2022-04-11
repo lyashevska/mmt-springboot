@@ -44,7 +44,8 @@ public class Manuscript {
     @Field(termVector = TermVector.YES)
     private int volume;
 
-    // file
+    @Lob
+    // save in db
     private byte [] content;
 
     private  long size;

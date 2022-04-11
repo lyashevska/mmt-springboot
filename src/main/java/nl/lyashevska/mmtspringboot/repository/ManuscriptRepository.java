@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ManuscriptRepository extends JpaRepository<Manuscript, Integer> {
+
+    public Manuscript findByAuthor(String author);
 }

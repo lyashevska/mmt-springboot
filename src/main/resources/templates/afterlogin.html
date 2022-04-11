@@ -77,7 +77,7 @@
             <th scope="col">Journal</th>
             <th scope="col">Volume</th>
             <th scope="col">Action</th>
-            <th scope="col">Download</th>
+            <th scope="col">File</th>
         </tr>
         </thead>
         <tbody>
@@ -94,6 +94,17 @@
                 <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Delete</a>
 <!--                upload -->
             </td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/upload/{id}(id=${m.id})}">Upload</a>
+<!--                <a class="btn btn-sm btn-primary" th:href="@{/upload}">Upload</a>-->
+<!--                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${m.id})}">Download</a>-->
+                <!--                upload -->
+            </td>
+<!--move to external-->
+            <!--                        &lt;!&ndash;upload file&ndash;&gt;-->
+            <!--                        <div class="form-group">-->
+            <!--                        <label>Upload</label><input type="file" class="form-control" name="content" required>-->
+            <!--                        </div>-->
 
         </tr>
 

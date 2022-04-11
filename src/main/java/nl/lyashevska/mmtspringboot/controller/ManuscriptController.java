@@ -5,14 +5,20 @@
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
+import nl.lyashevska.mmtspringboot.repository.ManuscriptRepository;
 import nl.lyashevska.mmtspringboot.service.ManuscriptService;
 import nl.lyashevska.mmtspringboot.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.util.StringUtils.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -25,6 +31,10 @@ public class ManuscriptController {
     // inject ManuscriptService
     @Autowired
     private ManuscriptService service;
+
+    // add repository
+    @Autowired
+    private ManuscriptRepository manuscriptRepository;
 
     // home with the search bar
     @GetMapping("/")
@@ -89,6 +99,44 @@ public class ManuscriptController {
         return "edit";
     }
 
+    // TODO
+    @GetMapping("/upload/{id}")
+    public String uploadFile(
+            @PathVariable int id, Model mod, @RequestParam("content") MultipartFile multipartFile, RedirectAttributes ra) throws Exception {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        try{
+            if(fileName.contains("..")){
+                throw new Exception("Filename contains invalid path sequence" + fileName);
+            }
+            // retrieve manuscript
+//        Manuscript content = new Manuscript();
+            Manuscript content = service.getManuscriptById(id);
+            content.setContent(multipartFile.getBytes());
+//        m.setSize(multipartFile.getSize());
+//         manuscriptRepository.save(content);
+            mod.addAttribute("man", content);
+            ra.addFlashAttribute("message", "The file has been uploaded.");
+            return "redirect:/afterlogin";
+
+        } catch (Exception e) {
+            throw new Exception("Could not save File: " + fileName);
+
+        }
+
+    }
+
+//    @GetMapping("/upload")
+//    public String uploadFile(
+//             @RequestParam("content") MultipartFile multipartFile, RedirectAttributes ra) throws IOException {
+//        String fileName = multipartFile.getOriginalFilename();
+//        Manuscript m = new Manuscript();
+//        m.setContent(multipartFile.getBytes());
+//        m.setSize(multipartFile.getSize());
+//        manuscriptRepository.save(m);
+////        m.addAttribute("man", m);
+//        ra.addFlashAttribute("message", "The file has been uploaded.");
+//        return "redirect:/afterlogin";
+//    }
     @GetMapping("/delete/{id}")
     public String deleteManuscript(@PathVariable int id, HttpSession session) {
         service.deleteManuscript(id);
@@ -111,5 +159,7 @@ public class ManuscriptController {
         session.setAttribute("msg", "Manuscript updated successfully");
         return "redirect:/afterlogin";
     }
+
+    // add download
 
 }
