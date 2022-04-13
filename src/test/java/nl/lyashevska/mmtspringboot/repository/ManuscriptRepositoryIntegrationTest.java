@@ -42,26 +42,26 @@ class ManuscriptRepositoryIntegrationTest {
                 .isEqualTo(man.getAuthor());
     }
 
-    @Test
-    @Disabled("Not implemented yet")
-    @DisplayName("Should check whether file upload worked as expected")
-    void testUploadContent() throws IOException {
-        String pathname = "src/test/resources/Lyashevska2020-class-imbalance.pdf";
-        File file = new File(pathname);
-        Manuscript man = new Manuscript();
-
-        byte[] bytes = Files.readAllBytes(file.toPath());
-        // set content
-        man.setContent(bytes);
-        // set size
-        long fileSize = bytes.length;
-        man.setSize(fileSize);
-
-        Manuscript uploadedFile = manuscriptRepository.save(man);
+//    @Test
+//    @Disabled("Not implemented yet")
+//    @DisplayName("Should check whether file upload worked as expected")
+//    void testUploadContent() throws IOException {
+//        String pathname = "src/test/resources/Lyashevska2020-class-imbalance.pdf";
+//        File file = new File(pathname);
+//        Manuscript man = new Manuscript();
+//
+//        byte[] bytes = Files.readAllBytes(file.toPath());
+//        // set content
+//        man.setContent(bytes);
+//        // set size
+//        long fileSize = bytes.length;
+//        man.setSize(fileSize);
+//
+//        Manuscript uploadedFile = manuscriptRepository.save(man);
 //		Manuscript existFile = entityManager.getId(Manuscript.class, uploadedFile.getId());
         // check if size is equal
 //		assertThat(existFile.getSize()).isEqualTo(fileSize);
 
-    }
+//    }
 
 }

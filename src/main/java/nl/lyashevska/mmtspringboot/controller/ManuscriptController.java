@@ -2,6 +2,7 @@
  * The controller is responsible for connecting the backend services to the front end Thymeleaf template.
  * https://wkrzywiec.medium.com/full-text-search-with-hibernate-search-lucene-part-1-e245b889aa8e
  */
+
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.model.Manuscript;
@@ -68,19 +69,14 @@ public class ManuscriptController {
             m.addAttribute("man", man);
             return "afterlogin";
         }
+
         // show only records matching search
         if (searchText != null) {
             m.addAttribute("man", searchService.getManuscriptAuthor(searchText));
         }
-        return "afterlogin";
+        // FIX returns index!
+        return "redirect:/afterlogin";
     }
-
-//    @GetMapping("/afterlogin")
-//    public String afterlogin(Model m) {
-//        List<Manuscript> man = service.getAllManuscript();
-//        m.addAttribute("man", man);
-//        return "afterlogin";
-//    }
 
     @GetMapping("/login")
     public String login() {
@@ -99,35 +95,38 @@ public class ManuscriptController {
         return "edit";
     }
 
-    // TODO
-    @GetMapping("/upload/{id}")
-    public String uploadFile(
-            @PathVariable int id, Model mod, @RequestParam("content") MultipartFile multipartFile, RedirectAttributes ra) throws Exception {
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        try{
-            if(fileName.contains("..")){
-                throw new Exception("Filename contains invalid path sequence" + fileName);
-            }
-            // retrieve manuscript
-//        Manuscript content = new Manuscript();
-            Manuscript content = service.getManuscriptById(id);
-            content.setContent(multipartFile.getBytes());
-//        m.setSize(multipartFile.getSize());
-//         manuscriptRepository.save(content);
-            mod.addAttribute("man", content);
-            ra.addFlashAttribute("message", "The file has been uploaded.");
-            return "redirect:/afterlogin";
+    // TODO --> move under edit?
+//    @GetMapping("/upload/{id}")
+//    public String uploadFile(@PathVariable int id,
+//                             Model mod,
+//                             @RequestParam("content") MultipartFile multipartFile,
+//                             RedirectAttributes ra) throws Exception {
+//
+//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//
+//        try{
+//            if(fileName.contains("..")){
+//                throw new Exception("Filename contains invalid path sequence" + fileName);
+//            }
+//
+////        Manuscript content = new Manuscript();
+//            Manuscript content = service.getManuscriptById(id);
+//            content.setContent(multipartFile.getBytes());
+////        m.setSize(multipartFile.getSize());
+////         manuscriptRepository.save(content);
+//            mod.addAttribute("man", content);
+//            ra.addFlashAttribute("message", "The file has been uploaded.");
+//            return "redirect:/afterlogin";
+//
+//        } catch (Exception e) {
+//            throw new Exception("Could not save File: " + fileName);
+//
+//        }
+//    }
 
-        } catch (Exception e) {
-            throw new Exception("Could not save File: " + fileName);
-
-        }
-
-    }
-
-//    @GetMapping("/upload")
-//    public String uploadFile(
-//             @RequestParam("content") MultipartFile multipartFile, RedirectAttributes ra) throws IOException {
+//    @PostMapping("/upload")
+//    public String uploadFile(Manuscript m,
+//             @RequestParam("file") MultipartFile multipartFile, RedirectAttributes ra) throws IOException {
 //        String fileName = multipartFile.getOriginalFilename();
 //        Manuscript m = new Manuscript();
 //        m.setContent(multipartFile.getBytes());
@@ -137,6 +136,8 @@ public class ManuscriptController {
 //        ra.addFlashAttribute("message", "The file has been uploaded.");
 //        return "redirect:/afterlogin";
 //    }
+
+
     @GetMapping("/delete/{id}")
     public String deleteManuscript(@PathVariable int id, HttpSession session) {
         service.deleteManuscript(id);
