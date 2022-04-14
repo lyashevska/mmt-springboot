@@ -12,18 +12,18 @@ import java.util.Optional;
 public class ManuscriptService {
 
     @Autowired
-    private ManuscriptRepository repo;
+    private ManuscriptRepository manuscriptRepository;
 
     public void add(Manuscript m){
-        repo.save(m);
+        manuscriptRepository.save(m);
     }
 
     public List<Manuscript> getAllManuscript(){
-        return repo.findAll();
+        return manuscriptRepository.findAll();
     }
 
     public Manuscript getManuscriptById(int id){
-        Optional<Manuscript> m = repo.findById(id);
+        Optional<Manuscript> m = manuscriptRepository.findById(id);
         if(m.isPresent()){
             return m.get();
         }
@@ -31,6 +31,6 @@ public class ManuscriptService {
     }
 
     public void deleteManuscript(int id){
-        repo.deleteById(id);
+        manuscriptRepository.deleteById(id);
     }
 }

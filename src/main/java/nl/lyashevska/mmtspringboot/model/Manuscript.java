@@ -46,7 +46,7 @@ public class Manuscript {
 
 //    @Lob
 //    // save in db
-//    private byte [] content;
+    private byte [] content2;
 
     // to store path to a file
     @Column(nullable = true, length = 64)

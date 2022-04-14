@@ -31,7 +31,7 @@ public class ManuscriptController {
 
     // inject ManuscriptService
     @Autowired
-    private ManuscriptService service;
+    private ManuscriptService manuscriptService;
 
     // add repository
     @Autowired
@@ -42,7 +42,7 @@ public class ManuscriptController {
     public String home(Model m, @RequestParam(value = "search", required = false) String searchText) {
         // show all records
         if (searchText == null) {
-            List<Manuscript> man = service.getAllManuscript();
+            List<Manuscript> man = manuscriptService.getAllManuscript();
             m.addAttribute("man", man);
             return "index";
         }
@@ -65,7 +65,7 @@ public class ManuscriptController {
     public String afterlogin(Model m, @RequestParam(value = "search", required = false) String searchText) {
         // show all records
         if (searchText == null) {
-            List<Manuscript> man = service.getAllManuscript();
+            List<Manuscript> man = manuscriptService.getAllManuscript();
             m.addAttribute("man", man);
             return "afterlogin";
         }
@@ -90,7 +90,7 @@ public class ManuscriptController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model mod) {
-        Manuscript m = service.getManuscriptById(id);
+        Manuscript m = manuscriptService.getManuscriptById(id);
         mod.addAttribute("man", m);
         return "edit";
     }
@@ -140,7 +140,7 @@ public class ManuscriptController {
 
     @GetMapping("/delete/{id}")
     public String deleteManuscript(@PathVariable int id, HttpSession session) {
-        service.deleteManuscript(id);
+        manuscriptService.deleteManuscript(id);
         session.setAttribute("msg", "Record deleted successfully");
         return "redirect:/afterlogin";
     }
@@ -149,14 +149,14 @@ public class ManuscriptController {
     @PostMapping("/register")
     public String manRegister(@ModelAttribute Manuscript m, HttpSession session) {
         System.out.println(m);
-        service.add(m);
+        manuscriptService.add(m);
         session.setAttribute("msg", "Manuscript added successfully");
         return "redirect:/afterlogin";
     }
 
     @PostMapping("/update")
     public String updateMan(@ModelAttribute Manuscript m, HttpSession session) {
-        service.add(m);
+        manuscriptService.add(m);
         session.setAttribute("msg", "Manuscript updated successfully");
         return "redirect:/afterlogin";
     }
