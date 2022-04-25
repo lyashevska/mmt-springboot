@@ -10,6 +10,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+// instruct Spring to create and add a bean to the context of the type of this class
 @Component
 @Slf4j
 @RequiredArgsConstructor

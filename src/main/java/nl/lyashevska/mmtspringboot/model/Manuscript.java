@@ -44,21 +44,17 @@ public class Manuscript {
     @Field(termVector = TermVector.YES)
     private int volume;
 
-//    @Lob
-//    // save in db
-    private byte [] content2;
-
-    // to store path to a file
-    @Column(nullable = true, length = 64)
-    private String content;
-
-    private  long size;
+    // file upload fields
+    private String name;
+    private String type;
+    @Lob
+    private byte [] data;
 
     // no arg constructor
     public Manuscript(){
     }
 
-    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume, String content, long size) {
+    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume, String name, String type, byte[] data) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -66,8 +62,9 @@ public class Manuscript {
         this.year = year;
         this.journal = journal;
         this.volume = volume;
-        this.content = content;
-        this.size = size;
+        this.name = name;
+        this.type = type;
+        this.data = data;
     }
 
     @Override
@@ -145,20 +142,28 @@ public class Manuscript {
         this.volume = volume;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getSize() {
-        return size;
+    public String getType() {
+        return type;
     }
 
-    public void setSize(long size) {
-        this.size = size;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     @Override

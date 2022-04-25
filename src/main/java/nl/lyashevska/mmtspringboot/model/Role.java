@@ -1,5 +1,4 @@
 package nl.lyashevska.mmtspringboot.model;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,12 +13,10 @@ public class Role {
     // default constructor as required by hibernate for JPA entity
     public Role() {
     }
-
     public Role(String name) {
         super();
         this.name = name;
     }
-
     public Long getId() {
         return id;
     }

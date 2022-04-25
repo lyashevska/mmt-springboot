@@ -1,6 +1,8 @@
 /**
  * The controller is responsible for connecting the backend services to the front end Thymeleaf template.
  * https://wkrzywiec.medium.com/full-text-search-with-hibernate-search-lucene-part-1-e245b889aa8e
+ * https://www.bezkoder.com/spring-boot-upload-file-database/
+ *
  */
 
 package nl.lyashevska.mmtspringboot.controller;
@@ -22,9 +24,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+// The controller is a component of the web app that contains methods (often named actions)
+// executed for a specific HTTP request
 @Controller
 public class ManuscriptController {
 
+    // instruct Spring to provide a BEan from its context and set it directly as the value of the field
+    // this way a relationship between the two beans is established
     // inject the SearchService object
     @Autowired
     private SearchService searchService;
@@ -53,13 +59,6 @@ public class ManuscriptController {
         return "index";
     }
 
-//        @GetMapping("/")
-//    public String home(Model m) {
-//        List<Manuscript> man = service.getAllManuscript();
-//        m.addAttribute("man", man);
-//        return "index";
-//    }
-
     //afterlogin with the search bar
     @GetMapping("/afterlogin")
     public String afterlogin(Model m, @RequestParam(value = "search", required = false) String searchText) {
@@ -75,7 +74,8 @@ public class ManuscriptController {
             m.addAttribute("man", searchService.getManuscriptAuthor(searchText));
         }
         // FIX returns index!
-        return "redirect:/afterlogin";
+//        return "redirect:/afterlogin";
+        return "afterlogin";
     }
 
     @GetMapping("/login")
@@ -94,49 +94,6 @@ public class ManuscriptController {
         mod.addAttribute("man", m);
         return "edit";
     }
-
-    // TODO --> move under edit?
-//    @GetMapping("/upload/{id}")
-//    public String uploadFile(@PathVariable int id,
-//                             Model mod,
-//                             @RequestParam("content") MultipartFile multipartFile,
-//                             RedirectAttributes ra) throws Exception {
-//
-//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//
-//        try{
-//            if(fileName.contains("..")){
-//                throw new Exception("Filename contains invalid path sequence" + fileName);
-//            }
-//
-////        Manuscript content = new Manuscript();
-//            Manuscript content = service.getManuscriptById(id);
-//            content.setContent(multipartFile.getBytes());
-////        m.setSize(multipartFile.getSize());
-////         manuscriptRepository.save(content);
-//            mod.addAttribute("man", content);
-//            ra.addFlashAttribute("message", "The file has been uploaded.");
-//            return "redirect:/afterlogin";
-//
-//        } catch (Exception e) {
-//            throw new Exception("Could not save File: " + fileName);
-//
-//        }
-//    }
-
-//    @PostMapping("/upload")
-//    public String uploadFile(Manuscript m,
-//             @RequestParam("file") MultipartFile multipartFile, RedirectAttributes ra) throws IOException {
-//        String fileName = multipartFile.getOriginalFilename();
-//        Manuscript m = new Manuscript();
-//        m.setContent(multipartFile.getBytes());
-//        m.setSize(multipartFile.getSize());
-//        manuscriptRepository.save(m);
-////        m.addAttribute("man", m);
-//        ra.addFlashAttribute("message", "The file has been uploaded.");
-//        return "redirect:/afterlogin";
-//    }
-
 
     @GetMapping("/delete/{id}")
     public String deleteManuscript(@PathVariable int id, HttpSession session) {
@@ -160,7 +117,5 @@ public class ManuscriptController {
         session.setAttribute("msg", "Manuscript updated successfully");
         return "redirect:/afterlogin";
     }
-
-    // add download
 
 }

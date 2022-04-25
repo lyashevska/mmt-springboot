@@ -63,7 +63,6 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-orm</artifactId>
@@ -103,13 +102,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-
-		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.commons</groupId>-->
-<!--			<artifactId>commons-dbcp2</artifactId>-->
-<!--			<version>2.9.0</version>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>com.h2database</groupId>
