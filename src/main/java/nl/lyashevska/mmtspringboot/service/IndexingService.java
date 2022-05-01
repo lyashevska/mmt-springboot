@@ -7,7 +7,6 @@
  * https://wkrzywiec.medium.com/full-text-search-with-hibernate-search-lucene-part-1-e245b889aa8e
  * https://github.com/wkrzywiec/Library-Spring/blob/163fbbac65750b199cc665a2ba61fd4b80fc2ff6/src/main/webapp/WEB-INF/views/admin-panel.jsp
  *
- *
  */
 
 package nl.lyashevska.mmtspringboot.service;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
 
 @Service
 @RequiredArgsConstructor

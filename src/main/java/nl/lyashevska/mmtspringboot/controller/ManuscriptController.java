@@ -73,7 +73,6 @@ public class ManuscriptController {
         if (searchText != null) {
             m.addAttribute("man", searchService.getManuscriptAuthor(searchText));
         }
-        // FIX returns index!
 //        return "redirect:/afterlogin";
         return "afterlogin";
     }
