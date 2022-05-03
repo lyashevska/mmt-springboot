@@ -1,16 +1,31 @@
 package nl.lyashevska.mmtspringboot.service;
 
+import nl.lyashevska.mmtspringboot.model.Manuscript;
+import nl.lyashevska.mmtspringboot.repository.ManuscriptRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 
 class ManuscriptServiceTest {
 
-    @Test
-    void add() {
-    }
+//    parameters and external dependency:
+//    private ManuscriptRepository manuscriptRepository;
 
     @Test
-    void getManuscriptById() {
-    }
+    @DisplayName("Test the manuscript is successfully found and no exceptions occur")
+    public void getManuscriptByIdFound() {
+        // create a mock repository
+        ManuscriptRepository manuscriptRepository = mock(ManuscriptRepository.class);
+//      create an instance
+//      ManuscriptService manuscriptService = new ManuscriptService(manuscriptRepository);
+        Manuscript m = new Manuscript();
+        m.setId(1);
+        given(manuscriptRepository.findById(m.getId())).willReturn(Optional.of(m));
+        }
 }
