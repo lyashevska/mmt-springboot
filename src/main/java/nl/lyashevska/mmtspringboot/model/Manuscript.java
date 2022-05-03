@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 // map a class to a database table and its fields to the table columns
 @Entity
-// map a class to Elasticsearch’s index and its fields to the document fields in the index
+// map a class to Lucene index and its fields to the document fields in the index
 @Indexed
 
 @Table(name="manuscript")
@@ -44,11 +44,17 @@ public class Manuscript {
     @Field(termVector = TermVector.YES)
     private int volume;
 
+    // file upload fields
+    private String name;
+    private String type;
+    @Lob
+    private byte [] data;
+
     // no arg constructor
     public Manuscript(){
     }
 
-    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume) {
+    public Manuscript(int id, User user, String title, String author, String year, String journal, int volume, String name, String type, byte[] data) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -56,6 +62,9 @@ public class Manuscript {
         this.year = year;
         this.journal = journal;
         this.volume = volume;
+        this.name = name;
+        this.type = type;
+        this.data = data;
     }
 
     @Override
@@ -131,6 +140,30 @@ public class Manuscript {
 
     public void setVolume(int volume) {
         this.volume = volume;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     @Override

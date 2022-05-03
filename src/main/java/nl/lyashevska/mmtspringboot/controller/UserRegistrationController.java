@@ -1,3 +1,7 @@
+/**
+ * User registration controller
+ * providing endpoints
+ */
 package nl.lyashevska.mmtspringboot.controller;
 
 import nl.lyashevska.mmtspringboot.service.UserService;

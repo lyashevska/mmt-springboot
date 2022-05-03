@@ -46,7 +46,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="text-center text-primary">Add</h4>
+                    <h4 class="text-center text-primary">Add Manuscript</h4>
                     <form th:action="@{/register}" method="post">
 
                         <div class="form-group">
@@ -69,8 +69,12 @@
                             <label>Enter volume</label><input type="text" class="form-control" name="volume">
                         </div>
 
-                        <button class="btn btn-primary btn-block">Submit</button>
+                        <!--upload file-->
+                        <div class="form-group">
+                            <label>File Upload</label><input type="file" class="form-control" name="data" >
+                        </div>
 
+                        <button class="btn btn-primary btn-block">Submit</button>
 
                     </form>
                 </div>

@@ -47,8 +47,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="text-center text-primary">Edit Manuscript</h4>
-                    <form th:action="@{/update}" method="post" th:object="${emp}">
-                        <input tyoe="hidden" th:value="${man.id}" name="id">
+                    <form th:action="@{/update}" method="post" th:object="${man}">
+                        <input type="hidden" th:value="${man.id}" name="id">
 
                         <div class="form-group">
                             <label>Enter manuscript title</label><input type="text" class="form-control" name="title" th:value="${man.title}">
@@ -70,9 +70,12 @@
                             <label>Enter volume</label><input type="text" class="form-control" name="volume" th:value="${man.volume}">
                         </div>
 
+                        <!--upload file-->
+                        <div class="form-group">
+                            <label>File Upload</label><input type="file" class="form-control" name="content" required>
+                        </div>
+
                         <button class="btn btn-primary btn-block">Submit</button>
-
-
                     </form>
                 </div>
             </div>

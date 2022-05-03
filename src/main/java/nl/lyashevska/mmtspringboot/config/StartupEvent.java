@@ -1,5 +1,6 @@
 /**
  * This method is called when application is started
+ * Main purpose is to reindex entities for hibernate search
  */
 package nl.lyashevska.mmtspringboot.config;
 
@@ -9,14 +10,12 @@ import nl.lyashevska.mmtspringboot.service.IndexingService;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
+// instruct Spring to create and add a bean to the context of the type of this class
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class StartupEvent implements ApplicationListener<ApplicationReadyEvent> {
-
     private final IndexingService service;
-
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         try {

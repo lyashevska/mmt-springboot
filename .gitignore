@@ -32,3 +32,5 @@ build/
 ### Sensitive Data ###
 src/main/resources/application.properties
 
+### lucene indices
+nl.lyashevska.mmtspringboot.model.Manuscript

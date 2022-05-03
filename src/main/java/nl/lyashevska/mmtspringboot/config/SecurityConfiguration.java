@@ -24,10 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    // making link between the Beans with a direct method call
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
+        // directly calling the Bean I wish to refer to
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }

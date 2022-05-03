@@ -51,7 +51,6 @@
 <!--<adapt from https://mkyong.com/spring-boot/spring-boot-hibernate-search-example/>-->
 <div class="container p-5">
     <form action="#" th:action="@{/}" th:object="${search}">
-
         <label for="search">Search by Author:</label>
         <input name="search" id="search"></input>
     </form>
@@ -67,6 +66,7 @@
             <th scope="col">Year</th>
             <th scope="col">Journal</th>
             <th scope="col">Volume</th>
+            <th scope="col">File</th>
         </tr>
         </thead>
 
@@ -78,6 +78,7 @@
             <td th:text="${m.year}"></td>
             <td th:text="${m.journal}"></td>
             <td th:text="${m.volume}"></td>
+<!--            <td th:text="${m.content}"></td>-->
         </tr>
         </tbody>
     </table>

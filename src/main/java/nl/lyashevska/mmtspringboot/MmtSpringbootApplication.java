@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 // @SpringBootApplication (exclude = {SecurityAutoConfiguration.class})
 
+// instruct Spring on where to find the classes I marked as @Component
 @ComponentScan(basePackages = "nl.lyashevska")
 @SpringBootApplication ()
 
