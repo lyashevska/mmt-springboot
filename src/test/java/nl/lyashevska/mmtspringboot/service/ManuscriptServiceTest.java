@@ -9,4 +9,8 @@ class ManuscriptServiceTest {
     @Test
     void add() {
     }
+
+    @Test
+    void getManuscriptById() {
+    }
 }

@@ -48,7 +48,6 @@ public class ManuscriptService {
         return manuscriptRepository.save(m);
     }
 
-    // maybe redundant?
     public Stream<Manuscript> getAllFiles() {
         return manuscriptRepository.findAll().stream();
     }
