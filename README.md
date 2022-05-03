@@ -1,7 +1,9 @@
 # mmt-springboot
 Manuscript Management tool with Spring 
 ## Technologies
-- Spring Boot
 - Java 11
-- Thymeleaf
+- Spring Boot
 - Hibernate Search with Lucene
+- Spring JPA
+- Spring MVC
+- Thymeleaf
