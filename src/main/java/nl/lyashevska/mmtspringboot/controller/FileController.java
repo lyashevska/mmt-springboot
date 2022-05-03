@@ -20,13 +20,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
-@CrossOrigin("http://localhost:8081")
-public class FileController {
+// changed controller to REST controller
+@RestController
 
+//@CrossOrigin("http://localhost:8081")
+
+public class FileController {
  @Autowired
  private ManuscriptService manuscriptService;
-
+// ResponseEntity allows to manage the HTTP status and headers
  @PostMapping("/upload")
 public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file){
   String message = "";
@@ -39,7 +41,6 @@ public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") Multipar
    return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
   }
  }
-
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
         List<ResponseFile> files = manuscriptService.getAllFiles().map(dbFile -> {
@@ -48,7 +49,6 @@ public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") Multipar
                     .path("/files/")
                     .path(String.valueOf(dbFile.getId()))
                     .toUriString();
-
             return new ResponseFile(
                     dbFile.getName(),
                     fileDownloadUri,
@@ -65,5 +65,4 @@ public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") Multipar
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + m.getName() + "\"")
                 .body(m.getData());
     }
-
 }
