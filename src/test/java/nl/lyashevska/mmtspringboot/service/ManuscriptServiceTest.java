@@ -4,10 +4,7 @@ import nl.lyashevska.mmtspringboot.model.Manuscript;
 import nl.lyashevska.mmtspringboot.repository.ManuscriptRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.Optional;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -22,8 +19,8 @@ class ManuscriptServiceTest {
     public void getManuscriptByIdFound() {
         // create a mock repository
         ManuscriptRepository manuscriptRepository = mock(ManuscriptRepository.class);
-//      create an instance
-//      ManuscriptService manuscriptService = new ManuscriptService(manuscriptRepository);
+
+        // create an instance of manuscript
         Manuscript m = new Manuscript();
         m.setId(1);
         given(manuscriptRepository.findById(m.getId())).willReturn(Optional.of(m));
