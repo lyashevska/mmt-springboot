@@ -1,7 +1,15 @@
 # mmt-springboot
-Manuscript Management tool with Spring 
+Web Application Manuscript Management Tool
+
 ## Technologies
-- Spring Boot
 - Java 11
-- Thymeleaf
+- Spring Boot
+- Spring JPA
+- Spring MVC
 - Hibernate Search with Lucene
+- Thymeleaf
+- Mockito 
+- JUnit
+- Apache Tomcat
+- Maven
+- Bootstrap

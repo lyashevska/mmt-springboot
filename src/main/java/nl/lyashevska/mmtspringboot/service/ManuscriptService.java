@@ -17,15 +17,12 @@ public class ManuscriptService {
 
     @Autowired
     private ManuscriptRepository manuscriptRepository;
-
     public void add(Manuscript m){
         manuscriptRepository.save(m);
     }
-
     public List<Manuscript> getAllManuscript(){
         return manuscriptRepository.findAll();
     }
-
     public Manuscript getManuscriptById(int id){
         Optional<Manuscript> m = manuscriptRepository.findById(id);
         if(m.isPresent()){
@@ -33,11 +30,9 @@ public class ManuscriptService {
         }
         return null;
     }
-
     public void deleteManuscript(int id){
         manuscriptRepository.deleteById(id);
     }
-
     // method for upload service
     public Manuscript store(MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -47,8 +42,6 @@ public class ManuscriptService {
         m.setData(file.getBytes());
         return manuscriptRepository.save(m);
     }
-
-    // maybe redundant?
     public Stream<Manuscript> getAllFiles() {
         return manuscriptRepository.findAll().stream();
     }
