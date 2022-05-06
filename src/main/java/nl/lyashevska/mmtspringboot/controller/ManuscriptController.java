@@ -1,7 +1,6 @@
 /**
  * The controller is responsible for connecting the backend services to the front end Thymeleaf template.
  * https://wkrzywiec.medium.com/full-text-search-with-hibernate-search-lucene-part-1-e245b889aa8e
- * https://www.bezkoder.com/spring-boot-upload-file-database/
  *
  */
 
@@ -29,7 +28,7 @@ import java.util.List;
 @Controller
 public class ManuscriptController {
 
-    // instruct Spring to provide a BEan from its context and set it directly as the value of the field
+    // instruct Spring to provide a Bean from its context and set it directly as the value of the field
     // this way a relationship between the two beans is established
     // inject the SearchService object
     @Autowired

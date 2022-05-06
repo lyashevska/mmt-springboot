@@ -17,14 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class ManuscriptRepositoryIntegrationTest {
-
     @Autowired
     private TestEntityManager entityManager;
-
     @Autowired
     private ManuscriptRepository manuscriptRepository;
-
-    // test cases here
     @Test
     void whenFindByAuthor_thenReturnAuthor() {
 
@@ -33,10 +29,8 @@ class ManuscriptRepositoryIntegrationTest {
         man.setAuthor("Lyashevska");
         entityManager.persist("Lyashevska");
         entityManager.flush();
-
         // when
         Manuscript found = manuscriptRepository.findByAuthor("Lyashevska");
-
         // then
         assertThat(found.getAuthor())
                 .isEqualTo(man.getAuthor());

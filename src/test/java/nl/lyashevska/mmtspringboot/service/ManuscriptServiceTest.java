@@ -8,6 +8,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class ManuscriptServiceTest {
 
@@ -25,4 +26,15 @@ class ManuscriptServiceTest {
         m.setId(1);
         given(manuscriptRepository.findById(m.getId())).willReturn(Optional.of(m));
         }
+
+    @Test
+    @DisplayName("Test the manuscript when exception occurs")
+    public void getManuscriptById_IdNotFound(){
+
+        ManuscriptRepository manuscriptRepository = mock(ManuscriptRepository.class);
+        // create an instance of manuscript
+        Manuscript m = new Manuscript();
+        m.setId(1);
+        given(manuscriptRepository.findById(m.getId())).willReturn(Optional.empty());
+     }
 }

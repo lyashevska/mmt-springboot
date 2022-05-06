@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class FileController {
  @Autowired
  private ManuscriptService manuscriptService;
-// ResponseEntity allows to manage the HTTP status and headers
+ // ResponseEntity allows to manage the HTTP status and headers
  @PostMapping("/upload")
 public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file){
   String message = "";
