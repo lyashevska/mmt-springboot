@@ -1,7 +1,7 @@
 
 ## Introduction
 This is a little project that uses Java and Springboot and creates a Web Application to manage manuscripts.
-This is a part of the [Software Development](https://www.ncirl.ie/Courses/NCI-Course-Details/course/HDCOMPSDEV) at [National College of Ireland](https://www.ncirl.ie/)
+This is a part of the [Higher Diploma in Science in Computing (Software Development)](https://www.ncirl.ie/Courses/NCI-Course-Details/course/HDCOMPSDEV) at [National College of Ireland](https://www.ncirl.ie/)
 
 ## Technologies used
 - Java 11
